@@ -24,10 +24,13 @@ EasyEnglishListening 是一款专为英语老师设计的音频处理工具，�
 ## 快速上手
 ### 安装步骤（Windows）
 1. 下载项目源码并解压至本地文件夹
-2. 双击 `点我启动.bat` 自动启动程序：
+[123网盘](https://www.123684.com/s/qVQcjv-a36D3)
+[GitHub](https://github.com/BCMOJANG/EasyEnglishListening/archive/refs/heads/main.zip)
+2. 解压
+3.  双击 `点我启动.bat` 自动启动程序：
    - 若未安装Python，程序会引导下载并安装Python 3.11（自动配置环境变量）
    - 自动检查并安装所需依赖库（PyQt5、pydub等）
-3. **必需依赖**：安装FFmpeg并配置环境变量
+4. **必需依赖**：安装FFmpeg并配置环境变量
    - 下载地址：[FFmpeg官网](https://ffmpeg.org/download.html)
    - 解压后将包含 `ffmpeg.exe` 的目录添加至系统 `PATH`
 
