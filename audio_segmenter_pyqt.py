@@ -7,7 +7,8 @@ from pydub.silence import split_on_silence
 from PyQt5.QtWidgets import (QApplication, QMainWindow, QPushButton, QLabel, QLineEdit, 
                             QFileDialog, QSlider, QProgressBar, QTextEdit, QVBoxLayout, 
                             QHBoxLayout, QWidget, QMessageBox, QFrame, QGroupBox, QStyleFactory, 
-                            QDialog, QMenu, QAction, QMenuBar, QSizePolicy, QListWidget, QListWidgetItem)
+                            QDialog, QMenu, QAction, QMenuBar, QSizePolicy, QListWidget, QListWidgetItem,
+                            QGraphicsDropShadowEffect)
 from PyQt5.QtCore import Qt, QThread, pyqtSignal, QTimer
 from PyQt5.QtGui import QIntValidator, QColor, QPalette, QFont
 
@@ -751,6 +752,9 @@ class AudioSegmenterPyQt(QMainWindow):
         font.setPointSize(10)
         self.setFont(font)
 
+        # 创建顶部标题卡片
+        self.create_header_card()
+
         # 创建输入文件组
         self.create_input_group()
 
@@ -759,6 +763,50 @@ class AudioSegmenterPyQt(QMainWindow):
 
         # 创建底部设置区域
         self.create_bottom_settings()
+
+    def create_header_card(self):
+        """创建顶部信息卡片，让界面更现代"""
+        card = QFrame()
+        card.setObjectName("headerCard")
+        card.setStyleSheet(f"""
+            QFrame#headerCard {{
+                border-radius: 14px;
+                padding: 12px;
+                background: qlineargradient(
+                    x1:0, y1:0, x2:1, y2:0,
+                    stop:0 #2D89C6,
+                    stop:1 #4AA3A1
+                );
+            }}
+            QLabel {{
+                color: white;
+                background: transparent;
+            }}
+        """)
+
+        shadow = QGraphicsDropShadowEffect(self)
+        shadow.setBlurRadius(24)
+        shadow.setXOffset(0)
+        shadow.setYOffset(6)
+        shadow.setColor(QColor(0, 0, 0, 45))
+        card.setGraphicsEffect(shadow)
+
+        layout = QVBoxLayout(card)
+        layout.setContentsMargins(18, 16, 18, 16)
+        layout.setSpacing(4)
+
+        title = QLabel("EasyEnglishListening")
+        title_font = QFont("Microsoft YaHei", 15)
+        title_font.setBold(True)
+        title.setFont(title_font)
+
+        subtitle = QLabel("智能分段 + 逐句精听，让课堂听力训练更高效")
+        subtitle.setStyleSheet("font-size: 10pt; color: rgba(255, 255, 255, 220);")
+
+        layout.addWidget(title)
+        layout.addWidget(subtitle)
+
+        self.main_layout.addWidget(card)
 
     def open_settings_dialog(self):
         """打开设置对话框"""

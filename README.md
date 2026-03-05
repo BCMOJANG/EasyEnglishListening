@@ -75,6 +75,52 @@ EasyEnglishListening 是一款专为英语老师设计的音频处理工具，�
 - 不得使用原作者商标或服务标记
 
 
+
+## 界面截图（本地）
+如果你想快速查看当前界面效果，可以在本地运行：
+
+```bash
+python capture_ui_preview.py
+```
+
+默认会离屏渲染并输出到 `artifacts/ui_preview.png`。  
+如果想直接看到窗口并手动体验：
+
+```bash
+python capture_ui_preview.py --show
+```
+
+> 说明：需要先安装 PyQt5（`pip install PyQt5`）。
+
+
+## 打包为 EXE（Windows）
+1. 安装 Python 3.8+，并确保命令行可用 `python` 或 `py -3`
+2. 在项目根目录双击 `build_exe.bat`
+3. 打包完成后可执行文件在：
+   - `dist\EasyEnglishListening.exe`
+
+该脚本会自动：
+- 安装/更新 `pyinstaller`
+- 清理旧构建目录
+- 将**整个项目依赖**打进单文件 EXE（含 PyQt5、pydub 子模块）
+- 打包 `config.json`、`README.md`、`LICENSE`
+
+手动命令（等价）：
+
+```bash
+python -m pip install --upgrade pyinstaller
+python -m PyInstaller --noconfirm --clean --onefile --windowed \
+  --name EasyEnglishListening \
+  --collect-submodules pydub \
+  --collect-submodules PyQt5 \
+  --add-data "config.json;." \
+  --add-data "README.md;." \
+  --add-data "LICENSE;." \
+  audio_segmenter_pyqt.py
+```
+
+> 注意：程序运行仍需系统可用 FFmpeg（`ffmpeg.exe` 在 PATH 中）。
+
 ## 技术说明
 - 开发语言：Python 3.8+
 - 音频处理：依赖 `pydub` 库（基于FFmpeg）
