@@ -93,6 +93,22 @@ python capture_ui_preview.py --show
 > 说明：需要先安装 PyQt5（`pip install PyQt5`）。
 
 
+## 打包为 EXE（Windows）
+1. 安装 Python 3.8+，并确保可在命令行使用 `python` 或 `py -3`
+2. 在项目根目录双击 `build_exe.bat`（或在终端执行）
+3. 打包完成后，在以下位置找到可执行文件：
+   - `dist\EasyEnglishListening\EasyEnglishListening.exe`
+
+也可以手动执行：
+
+```bash
+python -m pip install --upgrade pyinstaller
+python -m PyInstaller --noconfirm EasyEnglishListening.spec
+```
+
+> 注意：程序运行仍需系统可用 FFmpeg（`ffmpeg.exe` 在 PATH 中）。
+
+
 ## 技术说明
 - 开发语言：Python 3.8+
 - 音频处理：依赖 `pydub` 库（基于FFmpeg）
