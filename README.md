@@ -75,6 +75,24 @@ EasyEnglishListening 是一款专为英语老师设计的音频处理工具，�
 - 不得使用原作者商标或服务标记
 
 
+
+## 界面截图（本地）
+如果你想快速查看当前界面效果，可以在本地运行：
+
+```bash
+python capture_ui_preview.py
+```
+
+默认会离屏渲染并输出到 `artifacts/ui_preview.png`。  
+如果想直接看到窗口并手动体验：
+
+```bash
+python capture_ui_preview.py --show
+```
+
+> 说明：需要先安装 PyQt5（`pip install PyQt5`）。
+
+
 ## 技术说明
 - 开发语言：Python 3.8+
 - 音频处理：依赖 `pydub` 库（基于FFmpeg）
